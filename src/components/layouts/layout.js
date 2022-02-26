@@ -1,4 +1,4 @@
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 import Head from "next/head";
 
 export default function layout({ children }) {

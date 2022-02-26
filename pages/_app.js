@@ -1,4 +1,4 @@
-import Layout from "../src/components/layout";
+import Layout from "../src/components/layouts/layout";
 
 const GlobalStyled = () => {
     return (

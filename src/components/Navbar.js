@@ -1,7 +1,10 @@
 import { AppBar, Box, Toolbar, Badge, Menu, MenuItem, Avatar, IconButton, Typography } from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { NotificationsOutlined } from "@mui/icons-material";
+import Theme from "./Theme";
 import appConfig from '../../config.json';
+
+const theme = Theme();
 
 const darkTheme = createTheme({
     palette: {
@@ -16,7 +19,7 @@ export default function Navbar({ children }) {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <ThemeProvider theme={darkTheme} >
+                <ThemeProvider theme={theme} >
                     <AppBar
                         position="static"
                         color="primary"

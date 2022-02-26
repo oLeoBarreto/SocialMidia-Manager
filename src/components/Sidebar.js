@@ -1,135 +1,146 @@
 import { TrendingUpRounded, TvRounded, SettingsRounded, LogoDev, EventNoteRounded } from '@mui/icons-material';
-import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton } from '@mui/material';
+import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton, Paper, Box } from '@mui/material';
 import { useRouter } from 'next/router';
 import appConfig from '../../config.json';
 
-const datas = [
+const sidebarData = [
     {
-        label: 'Calendar',
-        icon: <EventNoteRounded />
+        label: "Calendar",
+        icon: <EventNoteRounded />,
+        link: "/calendar"
     },
     {
-        label: 'Dashboard',
-        icon: <TrendingUpRounded />
+        label: "Dashboard",
+        icon: <TrendingUpRounded />,
+        link: "/dashboard"
     },
     {
-        label: 'Inbox',
-        icon: <TvRounded />
-    },
-    {
-        label: 'settings',
-        icon: <SettingsRounded />
+        label: "Inbox",
+        icon: <TvRounded />,
+        link: "/Inbox"
     }
 ];
 
 export default function Sidebar() {
     const route = useRouter();
+
     return (
-        <List
+        <Box
             sx={{
-                width: '100%',
-                maxWidth: 280,
-                bgcolor: appConfig.theme["Secondary"]
+                maxWidth: 150,
+                height: 1,
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center'
             }}
-            component="nav"
-            aria-label="contacts"
         >
-            <ListItem
+            <List
                 sx={{
-                    display: 'flex',
-                    justifyContent: 'center'
+                    m: 0,
+                    p: 0,
+                    width: '100%',
+                    height: 1,
+                    bgcolor: appConfig.theme["Secondary"]
                 }}
+                component="nav"
+                aria-label="contacts"
             >
-                <IconButton aria-label="logo">
-                    <LogoDev sx={{
-                        fontSize: 60,
-                        color: appConfig.theme["light"]
-                    }}
-                    />
-                </IconButton>
-            </ListItem>
-
-            <Divider light variant="middle" />
-
-            <ListItem disablePadding
-                sx={{
-                    color: appConfig.theme["Tertiary"]
-                }}
-            >
-                <ListItemButton
-                    onClick={function (event) {
-                        event.preventDefault();
-                        route.push('/calendar');
+                <ListItem
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center'
                     }}
                 >
-                    <ListItemIcon>
-                        <EventNoteRounded sx={{
-                            fontSize: 40,
-                            color: appConfig.theme["Tertiary"]
+                    <IconButton
+                        aria-label="logo"
+                        onClick={function (event) {
+                            event.preventDefault();
+                            route.push('/');
+                        }}
+                    >
+                        <LogoDev sx={{
+                            fontSize: 65,
+                            color: appConfig.theme["light"]
                         }}
                         />
-                    </ListItemIcon>
-                    <ListItemText
-                        primary="Calendar"
-                        primaryTypographyProps={{
-                            fontWeight: 'medium'
-                        }}
-                    />
-                </ListItemButton>
-            </ListItem>
+                    </IconButton>
+                </ListItem>
 
-            <ListItem disablePadding
-                sx={{
-                    color: appConfig.theme["Tertiary"]
-                }}
-            >
-                <ListItemButton
-                    onClick={function (event) {
-                        event.preventDefault();
-                        route.push('/dashboard');
+                <Divider light variant="middle" />
+
+                <ListItem disablePadding
+                    sx={{
+                        color: appConfig.theme["Tertiary"]
                     }}
                 >
-                    <ListItemIcon>
-                        <TrendingUpRounded sx={{
-                            fontSize: 40,
-                            color: appConfig.theme["Tertiary"]
-                        }} />
-                    </ListItemIcon>
-                    <ListItemText
-                        primary="Dashboard"
-                        primaryTypographyProps={{
-                            fontWeight: 'medium'
+                    <ListItemButton
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
                         }}
-                    />
-                </ListItemButton>
-            </ListItem>
+                        onClick={function (event) {
+                            event.preventDefault();
+                            route.push('/calendar');
+                        }}
+                    >
+                        <ListItemIcon>
+                            <EventNoteRounded sx={{
+                                fontSize: 45,
+                                color: appConfig.theme["Tertiary"]
+                            }}
+                            />
+                        </ListItemIcon>
+                    </ListItemButton>
+                </ListItem>
 
-            <ListItem disablePadding
-                sx={{
-                    color: appConfig.theme["Tertiary"]
-                }}
-            >
-                <ListItemButton
-                    onClick={function (event) {
-                        event.preventDefault();
-                        route.push('/inbox');
+                <ListItem disablePadding
+                    sx={{
+                        color: appConfig.theme["Tertiary"]
                     }}
                 >
-                    <ListItemIcon>
-                        <TvRounded sx={{
-                            fontSize: 40,
-                            color: appConfig.theme["Tertiary"]
-                        }} />
-                    </ListItemIcon>
-                    <ListItemText
-                        primary="Inbox"
-                        primaryTypographyProps={{
-                            fontWeight: 'medium'
+                    <ListItemButton
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
                         }}
-                    />
-                </ListItemButton>
-            </ListItem>
+                        onClick={function (event) {
+                            event.preventDefault();
+                            route.push('/dashboard');
+                        }}
+                    >
+                        <ListItemIcon>
+                            <TrendingUpRounded sx={{
+                                fontSize: 45,
+                                color: appConfig.theme["Tertiary"]
+                            }} />
+                        </ListItemIcon>
+                    </ListItemButton>
+                </ListItem>
 
-        </List>
+                <ListItem disablePadding
+                    sx={{
+                        color: appConfig.theme["Tertiary"]
+                    }}
+                >
+                    <ListItemButton
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                        }}
+                        onClick={function (event) {
+                            event.preventDefault();
+                            route.push('/inbox');
+                        }}
+                    >
+                        <ListItemIcon>
+                            <TvRounded sx={{
+                                fontSize: 45,
+                                color: appConfig.theme["Tertiary"]
+                            }} />
+                        </ListItemIcon>
+                    </ListItemButton>
+                </ListItem>
+            </List>
+        </Box>
     );
 }
