@@ -3,22 +3,39 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Lin
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from '../src/components/Theme';
-
-const theme = Theme();
+import axios, { Axios } from 'axios';
 
 export default function SignIn() {
-    const handleSubmit = (event) => {
+
+    const [loginStatus, setLoginStatus] = React.useState("");
+    //Axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true;
+
+    const login = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-        console.log({
+        axios.post("http://localhost:5000/auth/login", {
             email: data.get('email'),
             password: data.get('password'),
+        }).then((response) => {
+            if (response.data.message) {
+                setLoginStatus(response.data.message);
+            } else {
+                setLoginStatus(response.data[0].username);
+            }
         });
     };
 
+    React.useEffect(() => {
+        axios.get("http://localhost:5000/auth/login").then((response) => {
+            if (response.data.loggedIn == true) {
+                setLoginStatus(response.data.user[0].username);
+            }
+        });
+    }, []);
+
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={Theme()}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -33,15 +50,15 @@ export default function SignIn() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Login
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={login} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
                             required
                             fullWidth
                             id="email"
-                            label="Email Address"
+                            label="Email"
                             name="email"
                             autoComplete="email"
                             autoFocus
@@ -51,7 +68,7 @@ export default function SignIn() {
                             required
                             fullWidth
                             name="password"
-                            label="Password"
+                            label="Senha"
                             type="password"
                             id="password"
                             autoComplete="current-password"
@@ -62,7 +79,7 @@ export default function SignIn() {
                                     color: 'primary.third',
                                 }
                             }} />}
-                            label="Remember me"
+                            label="Lembrar"
                         />
                         <Button
                             type="submit"
@@ -73,17 +90,12 @@ export default function SignIn() {
                                 '&:hover': { bgcolor: "#223D5C" }
                             }}
                         >
-                            Sign In
+                            Login
                         </Button>
                         <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
                             <Grid item>
                                 <Link href="/register" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                    {"Ainda não tem um conta? Registrar-se"}
                                 </Link>
                             </Grid>
                         </Grid>

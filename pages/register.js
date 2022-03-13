@@ -2,23 +2,28 @@ import * as React from 'react';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Grid, Box, Typography, Container, Checkbox } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { ThemeProvider } from '@mui/material/styles';
+import axios, { Axios } from 'axios';
 import Theme from '../src/components/Theme';
 
-const theme = Theme();
-
 export default function SignUp() {
-    const handleSubmit = (event) => {
+
+    axios.defaults.withCredentials = true;
+
+    const register = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-        console.log({
+        axios.post("http://localhost:5000/auth/register", {
+            name: data.get('username'),
             email: data.get('email'),
             password: data.get('password'),
+        }).then((response) => {
+            console.log(response);
         });
     };
 
+
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={Theme()}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -33,29 +38,18 @@ export default function SignUp() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign up
+                        Registro
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" noValidate onSubmit={register} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12} >
                                 <TextField
-                                    autoComplete="given-name"
-                                    name="firstName"
+                                    name="username"
                                     required
                                     fullWidth
-                                    id="firstName"
-                                    label="First Name"
+                                    id="username"
+                                    label="Nome de usuario"
                                     autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -63,7 +57,7 @@ export default function SignUp() {
                                     required
                                     fullWidth
                                     id="email"
-                                    label="Email Address"
+                                    label="Email"
                                     name="email"
                                     autoComplete="email"
                                 />
@@ -73,7 +67,7 @@ export default function SignUp() {
                                     required
                                     fullWidth
                                     name="password"
-                                    label="Password"
+                                    label="Senha"
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
@@ -86,7 +80,7 @@ export default function SignUp() {
                                             color: 'primary.third',
                                         }
                                     }} />}
-                                    label="I want to receive inspiration, marketing promotions and updates via email."
+                                    label="Quero receber notificações no meu email."
                                 />
                             </Grid>
                         </Grid>
@@ -99,12 +93,12 @@ export default function SignUp() {
                                 '&:hover': { bgcolor: "#223D5C" }
                             }}
                         >
-                            Sign Up
+                            Registrar
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link href="/" variant="body2">
-                                    Already have an account? Sign in
+                                    Já tem uma conta? Login
                                 </Link>
                             </Grid>
                         </Grid>
