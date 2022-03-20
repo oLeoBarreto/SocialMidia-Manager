@@ -4,5 +4,12 @@
         "Secondary": "#131112",
         "Tertiary": "#647B96",
         "light": "#FBF5F3"
+    },
+    "customColors": {
+        "green": "#35F125",
+        "red": "#F15025",
+        "blue": "#3360FF",
+        "orange": "#F58529",
+        "darkGreen": "#3EC544"
     }
 }

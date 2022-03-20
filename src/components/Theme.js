@@ -15,6 +15,13 @@ export default function Theme() {
                     third: appConfig.theme["Tertiary"],
                     light: appConfig.theme["light"]
                 },
+                customColors: {
+                    green: appConfig.customColors["green"],
+                    red: appConfig.customColors["red"],
+                    blue: appConfig.customColors["blue"],
+                    orange: appConfig.customColors["orange"],
+                    darkGreen: appConfig.customColors["darkGreen"]
+                },
             },
         })
     );

@@ -1,5 +1,5 @@
 import Navbar from "../src/components/Navbar";
-import { Box } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import appConfig from "../config.json";
 
 export default function Dashboard() {
@@ -15,13 +15,19 @@ export default function Dashboard() {
                 <Navbar>
                     Dashboard
                 </Navbar>
-
                 <Box
                     sx={{
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}
                 >
+                    <Container maxWidth={false}>
+                        <Grid
+                            container
+                            spacing={3}
+                        >
 
+                        </Grid>
+                    </Container>
                 </Box>
             </Box>
         </>
