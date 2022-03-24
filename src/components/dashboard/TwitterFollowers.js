@@ -1,13 +1,23 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import { Twitter, ArrowUpward } from '@mui/icons-material';
+import { Twitter } from '@mui/icons-material';
 import Theme from '../Theme';
 
 export default function Budget(props) {
+
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/twitter").then(response => {
+      let data = response.data;
+    });
+  }, []);
+
   return (
     <ThemeProvider theme={Theme()}>
       <Card
-        sx={{ height: '100%' }}
+        sx={{ height: '100%'}}
         {...props}
       >
         <CardContent>
@@ -43,30 +53,6 @@ export default function Budget(props) {
               </Avatar>
             </Grid>
           </Grid>
-          <Box
-            sx={{
-              pt: 2,
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <ArrowUpward color="customColors.green" />
-            <Typography
-              color="customColors.green"
-              sx={{
-                mr: 1
-              }}
-              variant="body2"
-            >
-              12%
-            </Typography>
-            <Typography
-              color="textSecondary"
-              variant="caption"
-            >
-              Desde de altima semana
-            </Typography>
-          </Box>
         </CardContent>
       </Card>
     </ThemeProvider>

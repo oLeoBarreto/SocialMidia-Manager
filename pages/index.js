@@ -3,7 +3,7 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Lin
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from '../src/components/Theme';
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 
 export default function SignIn() {
 
