@@ -1,18 +1,19 @@
 import * as React from 'react';
+import DefaultLayout from '../src/components/layouts/DefautLayout';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Grid, Box, Typography, Container, Checkbox } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { ThemeProvider } from '@mui/material/styles';
-import axios, { Axios } from 'axios';
 import Theme from '../src/components/Theme';
+import Api from '../src/api';
 
 export default function SignUp() {
 
-    axios.defaults.withCredentials = true;
+    Api.defaults.withCredentials = true;
 
     const register = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        axios.post("http://localhost:5000/auth/register", {
+        Api.post("auth/register", {
             name: data.get('username'),
             email: data.get('email'),
             password: data.get('password'),
@@ -20,7 +21,6 @@ export default function SignUp() {
             console.log(response);
         });
     };
-
 
     return (
         <ThemeProvider theme={Theme()}>
@@ -106,5 +106,13 @@ export default function SignUp() {
                 </Box>
             </Container>
         </ThemeProvider>
+    );
+}
+
+SignUp.getLayout = function getLayout(page) {
+    return (
+        <DefaultLayout>
+            {page}
+        </DefaultLayout>
     );
 }

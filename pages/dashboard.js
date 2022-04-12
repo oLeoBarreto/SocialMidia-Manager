@@ -1,14 +1,34 @@
-import Navbar from "../src/components/Navbar";
-import { Box, Container, Grid } from "@mui/material";
-import appConfig from "../config.json";
-import TwitterFollowers from "../src/components/dashboard/TwitterFollowers";
+import * as React from 'react';
+import DashboardLayout from "../src/components/layouts/DashboardLayout";
+import { Box, Container, Grid } from '@mui/material';
+import { Twitter } from '@mui/icons-material';
+import CardData from '../src/components/dashboard/CardData';
+import appConfig from '../config.json';
+import Api from '../src/api';
 
 export default function Dashboard() {
+
+    const [followers, setFollowers] = React.useState();
+    const [friends, setFriends] = React.useState();
+
+    React.useEffect(() => {
+        Api
+            .get("api/twitter/Followers")
+            .then(response => setFollowers(response.data.followersNumber))
+            .catch((err) => {
+                console.error("Ops! erro: " + err);
+            });
+
+        Api
+            .get("api/twitter/Friends")
+            .then(response => setFriends(response.data.friendsNumber))
+            .catch((err) => {
+                console.error("Ops! erro: " + err);
+            });
+    }, []);
+
     return (
         <>
-            <Navbar>
-                Dashboard
-            </Navbar>
             <Box
                 component="main"
                 sx={{
@@ -29,11 +49,40 @@ export default function Dashboard() {
                             xl={3}
                             xs={12}
                         >
-                            <TwitterFollowers />
+                            <CardData
+                                title="Followers"
+                                data={followers}
+                            >
+                                <Twitter />
+                            </CardData>
+                        </Grid>
+                        <Grid
+                            item
+                            lg={3}
+                            sm={6}
+                            xl={3}
+                            xs={12}
+                        >
+                            <CardData
+                                title="Friends"
+                                data={friends}
+                            >
+                                <Twitter />
+                            </CardData>
                         </Grid>
                     </Grid>
                 </Container>
             </Box>
         </>
+    );
+}
+
+Dashboard.getLayout = function getLayout(page) {
+    return (
+        <DashboardLayout
+            pageName="Dashboard"
+        >
+            {page}
+        </DashboardLayout>
     );
 }

@@ -1,6 +1,6 @@
-import Head from "next/head";
+import Head from 'next/head';
 
-export default function LayoutRegister({ children }) {
+export default function DefaultLayout({ children }) {
     return (
         <>
             <Head>

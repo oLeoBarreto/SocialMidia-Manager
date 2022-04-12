@@ -1,20 +1,20 @@
 import * as React from 'react';
+import DefaultLayout from '../src/components/layouts/DefautLayout';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from '../src/components/Theme';
-import axios from 'axios';
+import Api from '../src/api';
 
 export default function SignIn() {
 
     const [loginStatus, setLoginStatus] = React.useState("");
-    //Axios.defaults.withCredentials = true;
-    axios.defaults.withCredentials = true;
+    Api.defaults.withCredentials = true;
 
     const login = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        axios.post("http://localhost:5000/auth/login", {
+        Api.post("http://localhost:5000/auth/login", {
             email: data.get('email'),
             password: data.get('password'),
         }).then((response) => {
@@ -27,7 +27,7 @@ export default function SignIn() {
     };
 
     React.useEffect(() => {
-        axios.get("http://localhost:5000/auth/login").then((response) => {
+        Api.get("auth/login").then((response) => {
             if (response.data.loggedIn == true) {
                 setLoginStatus(response.data.user[0].username);
             }
@@ -103,5 +103,13 @@ export default function SignIn() {
                 </Box>
             </Container>
         </ThemeProvider >
+    );
+}
+
+SignIn.getLayout = function getLayout(page) {
+    return (
+        <DefaultLayout>
+            {page}
+        </DefaultLayout>
     );
 }

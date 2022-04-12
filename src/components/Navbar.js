@@ -1,16 +1,16 @@
-import { AppBar, Box, Toolbar, Badge, Menu, MenuItem, Avatar, IconButton, Typography } from "@mui/material";
+import { AppBar, Box, Toolbar, Badge, Menu, MenuItem, Avatar, IconButton, Typography } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { NotificationsOutlined } from "@mui/icons-material";
-import Theme from "./Theme";
+import { NotificationsOutlined } from '@mui/icons-material';
 import appConfig from '../../config.json';
-
-const theme = Theme();
 
 const darkTheme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
             main: appConfig.theme["Prymary"],
+            second: appConfig.theme["Secondary"],
+            third: appConfig.theme["Tertiary"],
+            light: appConfig.theme["light"]
         },
     },
 });
@@ -19,7 +19,7 @@ export default function Navbar({ children }) {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <ThemeProvider theme={theme} >
+                <ThemeProvider theme={darkTheme} >
                     <AppBar
                         position="static"
                         color="primary"

@@ -4,13 +4,11 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
 import MuiDateRangePickerDay from '@mui/lab/DateRangePickerDay';
-
-import appConfig from '../../config.json';
+import appConfig from '../../../config.json';
 import { ThemeProvider } from '@mui/material/styles';
-import Theme from './Theme';
+import Theme from '../Theme';
 
 const DateRangePickerDay = styled(MuiDateRangePickerDay)(
     ({ theme, isHighlighting, isStartOfHighlighting, isEndOfHighlighting }) => ({

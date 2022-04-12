@@ -1,6 +1,7 @@
-import Navbar from "../src/components/Navbar";
-import { Box } from "@mui/material";
-import appConfig from "../config.json";
+import * as React from 'react';
+import DashboardLayout from '../src/components/layouts/DashboardLayout';
+import { Box } from '@mui/material';
+import appConfig from '../config.json';
 
 export default function Inbox() {
     return (
@@ -12,10 +13,6 @@ export default function Inbox() {
                     height: 1
                 }}
             >
-                <Navbar>
-                    Inbox
-                </Navbar>
-
                 <Box
                     sx={{
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -25,5 +22,15 @@ export default function Inbox() {
                 </Box>
             </Box>
         </>
+    );
+}
+
+Inbox.getLayout = function getLayout(page) {
+    return (
+        <DashboardLayout
+            pageName="Inbox"
+        >
+            {page}
+        </DashboardLayout>
     );
 }

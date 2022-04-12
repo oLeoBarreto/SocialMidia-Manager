@@ -3,24 +3,6 @@ import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Ic
 import { useRouter } from 'next/router';
 import appConfig from '../../config.json';
 
-const sidebarData = [
-    {
-        label: "Calendar",
-        icon: <EventNoteRounded />,
-        link: "/calendar"
-    },
-    {
-        label: "Dashboard",
-        icon: <TrendingUpRounded />,
-        link: "/dashboard"
-    },
-    {
-        label: "Inbox",
-        icon: <TvRounded />,
-        link: "/Inbox"
-    }
-];
-
 export default function Sidebar() {
     const route = useRouter();
 
