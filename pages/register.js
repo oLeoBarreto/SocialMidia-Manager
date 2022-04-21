@@ -8,8 +8,6 @@ import Api from '../src/api';
 
 export default function SignUp() {
 
-    Api.defaults.withCredentials = true;
-
     const register = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);

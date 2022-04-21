@@ -1,8 +1,9 @@
 import * as React from 'react';
 import DashboardLayout from '../src/components/layouts/DashboardLayout';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import CalendarComp from '../src/components/calendar/CalendarComp';
 import NewRemiderCard from '../src/components/calendar/NewRemider';
+import ReminderList from '../src/components/calendar/ReminderList';
 import appConfig from '../config.json';
 
 export default function Calendar() {
@@ -17,25 +18,22 @@ export default function Calendar() {
                     display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'
                 }}
             >
-
-                <Box
-                    sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: {
-                            xs: 'column',
-                            sm: 'row',
-                        },
-                        width: '100%', maxWidth: '700px',
-                        borderRadius: '10px', padding: '32px', margin: '16px',
-                        backgroundColor: appConfig.theme["Secondary"],
-                    }}
+                <Grid
+                    container
+                    rowSpacing={2}
+                    justifyContent="center"
+                    alignItems="center"
                 >
-                    <CalendarComp />
-                </Box>
-
-                <NewRemiderCard />
+                    <Grid item md={6}>
+                        <CalendarComp />
+                    </Grid>
+                    <Grid item>
+                        <NewRemiderCard />
+                    </Grid>
+                    <Grid item md={8}>
+                        <ReminderList />
+                    </Grid>
+                </Grid>
 
             </Box>
         </>

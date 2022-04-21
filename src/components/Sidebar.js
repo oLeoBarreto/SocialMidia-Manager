@@ -42,7 +42,7 @@ export default function Sidebar() {
                     >
                         <LogoDev sx={{
                             fontSize: 65,
-                            color: appConfig.theme["light"]
+                            color: appConfig.theme["Light"]
                         }}
                         />
                     </IconButton>

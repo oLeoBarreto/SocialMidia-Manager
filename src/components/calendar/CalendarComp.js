@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { Box, TextField } from '@mui/material'
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
 import MuiDateRangePickerDay from '@mui/lab/DateRangePickerDay';
 import appConfig from '../../../config.json';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, styled } from '@mui/material/styles';
 import Theme from '../Theme';
 
 const DateRangePickerDay = styled(MuiDateRangePickerDay)(
@@ -40,22 +38,30 @@ export default function CustomDateRangePickerDay() {
 
     return (
         <ThemeProvider theme={Theme()}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <StaticDateRangePicker
-                    displayStaticWrapperAs="desktop"
-                    label="date range"
-                    value={value}
-                    onChange={(newValue) => setValue(newValue)}
-                    renderDay={renderWeekPickerDay}
-                    renderInput={(startProps, endProps) => (
-                        <React.Fragment>
-                            <TextField {...startProps} />
-                            <Box sx={{ mx: 2 }}> to </Box>
-                            <TextField {...endProps} />
-                        </React.Fragment>
-                    )}
-                />
-            </LocalizationProvider>
+            <Box
+                sx={{
+                    width: '100%', maxWidth: '700px',
+                    borderRadius: '15px', padding: '30px', margin: '10px',
+                    backgroundColor: 'primary.second',
+                }}
+            >
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <StaticDateRangePicker
+                        displayStaticWrapperAs="desktop"
+                        label="date range"
+                        value={value}
+                        onChange={(newValue) => setValue(newValue)}
+                        renderDay={renderWeekPickerDay}
+                        renderInput={(startProps, endProps) => (
+                            <React.Fragment>
+                                <TextField {...startProps} />
+                                <Box sx={{ mx: 2 }}> to </Box>
+                                <TextField {...endProps} />
+                            </React.Fragment>
+                        )}
+                    />
+                </LocalizationProvider>
+            </Box>
         </ThemeProvider>
     );
 }

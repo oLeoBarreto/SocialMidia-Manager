@@ -3,7 +3,8 @@
         "Prymary": "#202020",
         "Secondary": "#131112",
         "Tertiary": "#647B96",
-        "light": "#FBF5F3"
+        "Light": "#FBF5F3",
+        "Dark": "#000000"
     },
     "customColors": {
         "green": "#35F125",

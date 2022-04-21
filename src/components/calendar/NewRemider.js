@@ -14,25 +14,19 @@ export default function NewRemiderCard() {
     const [hour, setHour] = React.useState(null);
     const [reminderList, setReminderList] = React.useState([]);
 
-    const SubmitReminder = (title, dateHour) => {
-        const reminderBody = {
-            title: title,
-            dateHour: dateHour
-        }
-
-        console.log(reminderBody);
-    }
-
     React.useEffect(() => {
         Api
-            .get("/reminder/getReminders")
-            .then(response => setReminderList(response))
+            .post('/reminder/newReminder', {
+                title: title,
+                dateHour: hour,
+            })
+            .then((response) => {
+                console.log(response);
+            })
             .catch((err) => {
-                console.error("Ops! erro: " + err);
+                console.error(err);
             });
-        
-        console.log(reminderList);
-    }, []);
+    }, [])
 
     return (
         <>
@@ -40,10 +34,8 @@ export default function NewRemiderCard() {
                 <Card
                     component="form"
                     sx={{
-                        height: "35 0px",
-                        width: "100%",
-                        maxWidth: "300px",
-                        backgroundColor: "primary.second"
+                        height: "35 0px", width: "100%", maxWidth: "300px",
+                        backgroundColor: "primary.second", margin: '10px'
                     }}
                     autoComplete="off"
                 >
@@ -52,7 +44,6 @@ export default function NewRemiderCard() {
                     >
                         <Grid
                             container
-                            //spacing={3}
                             sx={{
                                 width: '100%',
                                 display: 'flex',
@@ -60,7 +51,7 @@ export default function NewRemiderCard() {
                                 justifyContent: 'center',
                                 flexWrap: 'wrap',
                                 flexDirection: 'column',
-                                borderRadius: '10px',
+                                borderRadius: '15px',
                             }}
                         >
                             <Grid item>
@@ -117,10 +108,6 @@ export default function NewRemiderCard() {
                                 fullWidth
                                 type="submit"
                                 sx={{ marginTop: '10px' }}
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    SubmitReminder(title, hour);
-                                }}
                             >
                                 Criar Lembrete
                             </Button>

@@ -4,12 +4,13 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Lin
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from '../src/components/Theme';
+import { useRouter } from 'next/router';
 import Api from '../src/api';
 
 export default function SignIn() {
 
+    const route = useRouter();
     const [loginStatus, setLoginStatus] = React.useState("");
-    Api.defaults.withCredentials = true;
 
     const login = (event) => {
         event.preventDefault();
@@ -18,18 +19,22 @@ export default function SignIn() {
             email: data.get('email'),
             password: data.get('password'),
         }).then((response) => {
-            if (response.data.message) {
-                setLoginStatus(response.data.message);
-            } else {
-                setLoginStatus(response.data[0].username);
+            if (response.data.error) {
+                console.log('Erro ao logar');
             }
+
+            if (response.data.user) {
+                route.push('/calendar');
+                console.log('Logado com sucesso');
+            }
+            console.log(response);
         });
     };
 
     React.useEffect(() => {
         Api.get("auth/login").then((response) => {
             if (response.data.loggedIn == true) {
-                setLoginStatus(response.data.user[0].username);
+                console.log('Logado');
             }
         });
     }, []);
@@ -89,6 +94,7 @@ export default function SignIn() {
                                 mt: 3, mb: 2, bgcolor: "primary.third", color: "primary.light",
                                 '&:hover': { bgcolor: "#223D5C" }
                             }}
+                            //onClick={route.push('/calendar')}
                         >
                             Login
                         </Button>

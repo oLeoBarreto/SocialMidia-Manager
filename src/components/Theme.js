@@ -13,7 +13,8 @@ export default function Theme() {
                     main: appConfig.theme["Prymary"],
                     second: appConfig.theme["Secondary"],
                     third: appConfig.theme["Tertiary"],
-                    light: appConfig.theme["light"]
+                    light: appConfig.theme["Light"],
+                    dark: appConfig.theme["Dark"]
                 },
                 customColors: {
                     green: appConfig.customColors["green"],
