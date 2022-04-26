@@ -1,20 +1,26 @@
 import * as React from 'react';
-import { Box, Grid, Paper, Chip, Typography } from '@mui/material';
-import { BusinessCenterRounded, BookmarkRounded, CollectionsBookmarkRounded, LocalPhoneRounded, SearchRounded } from '@mui/icons-material';
+import { Box, Grid, Paper, Typography } from '@mui/material';;
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from '../Theme';
 import Api from '../../api';
 
 export default function ReminderList() {
 
-    const reminders = [];
+    const [reminders, setReminders] = React.useState([]);
+
+    function formatDate(dateInput) {
+        let data = new Date(dateInput),
+            dia = data.getDate().toString().padStart(2, '0'),
+            mes = (data.getMonth() + 1).toString().padStart(2, '0'),
+            ano = data.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    }
 
     React.useEffect(() => {
         Api
             .get("/reminder/getReminders")
-            .then(response => { 
-                reminders.push(response.data);
-                console.log(reminders)
+            .then(response => {
+                setReminders(response.data);
             })
             .catch((err) => {
                 console.error("Ops! erro: " + err);
@@ -63,7 +69,7 @@ export default function ReminderList() {
                                             </Grid>
                                             <Grid item>
                                                 <Typography variant="subtitle1" component="div" color='primary.light'>
-                                                    {reminder.dateHour}
+                                                    {formatDate(reminder.dateHour)}
                                                 </Typography>
                                                 <Typography variant="subtitle1" component="div" color='primary.light' flexWrap='wrap'>
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam.
