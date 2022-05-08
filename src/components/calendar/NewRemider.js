@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Button, Typography, Grid, Chip, Stack, FormControl, OutlinedInput, InputAdornment, IconButton, Card, CardContent, TextField } from "@mui/material";
-import { BusinessCenterRounded, BookmarkRounded, CollectionsBookmarkRounded, LocalPhoneRounded, SearchRounded } from '@mui/icons-material';
+import { Button, Typography, Grid, Chip, Stack, Card, CardContent, TextField } from "@mui/material";
+import { BusinessCenterRounded, BookmarkRounded, CollectionsBookmarkRounded, LocalPhoneRounded } from '@mui/icons-material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { TimePicker } from '@mui/lab';
@@ -12,7 +12,6 @@ export default function NewRemiderCard() {
 
     const [title, setTitle] = React.useState();
     const [hour, setHour] = React.useState(null);
-    const [reminderList, setReminderList] = React.useState([]);
 
     React.useEffect(() => {
         Api

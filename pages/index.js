@@ -4,6 +4,7 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Lin
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from '../src/components/Theme';
+import Alert from '../src/components/Alert';
 import { useRouter } from 'next/router';
 import Api from '../src/api';
 
@@ -20,7 +21,7 @@ export default function SignIn() {
             password: data.get('password'),
         }).then((response) => {
             if (response.data.error) {
-                console.log('Erro ao logar');
+                return <Alert type="error">Erro no login confire seu email ou senha!</Alert> //FIXME: Arrumar rederização do componente
             }
 
             if (response.data.user) {
@@ -34,7 +35,7 @@ export default function SignIn() {
     React.useEffect(() => {
         Api.get("auth/login").then((response) => {
             if (response.data.loggedIn == true) {
-                console.log('Logado');
+                route.push('/calendar');
             }
         });
     }, []);
@@ -94,7 +95,7 @@ export default function SignIn() {
                                 mt: 3, mb: 2, bgcolor: "primary.third", color: "primary.light",
                                 '&:hover': { bgcolor: "#223D5C" }
                             }}
-                            //onClick={route.push('/calendar')}
+                        //onClick={route.push('/calendar')}
                         >
                             Login
                         </Button>

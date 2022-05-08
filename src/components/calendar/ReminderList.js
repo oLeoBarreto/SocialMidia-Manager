@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Box, Grid, Paper, Typography } from '@mui/material';;
+import { Box, Grid, Paper, Typography, IconButton } from '@mui/material';
+import { RemoveCircleOutline } from '@mui/icons-material';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from '../Theme';
 import Api from '../../api';
@@ -14,6 +15,17 @@ export default function ReminderList() {
             mes = (data.getMonth() + 1).toString().padStart(2, '0'),
             ano = data.getFullYear();
         return `${dia}/${mes}/${ano}`;
+    }
+
+    function DeleteReminder(id) {
+        Api
+            .delete(`/reminder/deleteReminder?Id=${id}`)
+            .then(response => {
+                console.log(response.status);
+            })
+            .catch((err) => {
+                console.error("Ops! " + err);
+            })
     }
 
     React.useEffect(() => {
@@ -62,9 +74,16 @@ export default function ReminderList() {
                                                     </Typography>
                                                 </Grid>
                                                 <Grid item>
-                                                    <Typography sx={{ cursor: 'pointer' }} variant="body2" color='primary.light'>
-                                                        Remove
-                                                    </Typography>
+                                                    <IconButton
+                                                        onClick={
+                                                            () => {
+                                                                let reminderID = reminder._id;
+                                                                DeleteReminder(reminderID);
+                                                            }
+                                                        }
+                                                    >
+                                                        <RemoveCircleOutline />
+                                                    </IconButton>
                                                 </Grid>
                                             </Grid>
                                             <Grid item>
