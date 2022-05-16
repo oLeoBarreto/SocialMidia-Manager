@@ -19,9 +19,10 @@ export default function ReminderList() {
 
     function DeleteReminder(id) {
         Api
-            .delete(`/reminder/deleteReminder?Id=${id}`)
+            .delete(`/reminder/deleteReminder/${id}`)
             .then(response => {
-                console.log(response.status);
+                console.log(response);
+                window.location.reload(false);
             })
             .catch((err) => {
                 console.error("Ops! " + err);
@@ -37,7 +38,7 @@ export default function ReminderList() {
             .catch((err) => {
                 console.error("Ops! erro: " + err);
             });
-    }, []);
+    }, [reminders]);
 
     return (
         <>
@@ -76,7 +77,8 @@ export default function ReminderList() {
                                                 <Grid item>
                                                     <IconButton
                                                         onClick={
-                                                            () => {
+                                                            (event) => {
+                                                                event.preventDefault();
                                                                 let reminderID = reminder._id;
                                                                 DeleteReminder(reminderID);
                                                             }

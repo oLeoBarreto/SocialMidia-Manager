@@ -3,6 +3,7 @@ import DashboardLayout from "../src/components/layouts/DashboardLayout";
 import { Box, Container, Grid } from '@mui/material';
 import { Twitter } from '@mui/icons-material';
 import CardData from '../src/components/dashboard/CardData';
+import Graphic from '../src/components/dashboard/Graphic';
 import appConfig from '../config.json';
 import Api from '../src/api';
 
@@ -69,6 +70,18 @@ export default function Dashboard() {
                             >
                                 <Twitter />
                             </CardData>
+                        </Grid>
+                        <Grid
+                            item
+                            lg={8}
+                            md={12}
+                            xl={9}
+                            xs={12}
+                        >
+                            <Graphic 
+                                followers={followers}
+                                friends={friends}
+                            />
                         </Grid>
                     </Grid>
                 </Container>

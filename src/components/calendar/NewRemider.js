@@ -10,10 +10,10 @@ import Api from '../../api';
 
 export default function NewRemiderCard() {
 
-    const [title, setTitle] = React.useState();
+    const [title, setTitle] = React.useState("");
     const [hour, setHour] = React.useState(null);
 
-    React.useEffect(() => {
+    function CreateReminder(title, hour) {
         Api
             .post('/reminder/newReminder', {
                 title: title,
@@ -21,11 +21,12 @@ export default function NewRemiderCard() {
             })
             .then((response) => {
                 console.log(response);
+                window.location.reload(false);
             })
             .catch((err) => {
                 console.error(err);
             });
-    }, [])
+    }
 
     return (
         <>
@@ -37,6 +38,10 @@ export default function NewRemiderCard() {
                         backgroundColor: "primary.second", margin: '10px'
                     }}
                     autoComplete="off"
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        CreateReminder(title, hour);
+                    }}
                 >
                     <CardContent
                         sx={{ marginTop: '15px' }}
