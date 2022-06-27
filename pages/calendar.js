@@ -24,7 +24,7 @@ export default function Calendar() {
                     justifyContent="center"
                     alignItems="center"
                 >
-                    <Grid item md={6}>
+                    <Grid item md={7}>
                         <CalendarComp />
                     </Grid>
                     <Grid item>

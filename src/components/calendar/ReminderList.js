@@ -34,6 +34,7 @@ export default function ReminderList() {
             .get("/reminder/getReminders")
             .then(response => {
                 setReminders(response.data);
+                console.log('Reminders: ', reminders);
             })
             .catch((err) => {
                 console.error("Ops! erro: " + err);
@@ -46,10 +47,11 @@ export default function ReminderList() {
                 <Box
                     sx={{
                         backgroundColor: 'primary.second',
-                        maxWidth: '710px',
+                        maxWidth: '600px',
                         borderRadius: '15px',
                         p: 2,
                         flexGrow: 1,
+                        minHeight: '100px'
                     }}
                 >
                     {
@@ -90,10 +92,10 @@ export default function ReminderList() {
                                             </Grid>
                                             <Grid item>
                                                 <Typography variant="subtitle1" component="div" color='primary.light'>
-                                                    {formatDate(reminder.dateHour)}
+                                                    {formatDate(reminder.date)}
                                                 </Typography>
                                                 <Typography variant="subtitle1" component="div" color='primary.light' flexWrap='wrap'>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam.
+                                                    {reminder.description}
                                                 </Typography>
                                             </Grid>
                                         </Grid>

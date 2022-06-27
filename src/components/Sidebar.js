@@ -99,7 +99,7 @@ export default function Sidebar() {
                     </ListItemButton>
                 </ListItem>
 
-                <ListItem disablePadding
+                {/* <ListItem disablePadding
                     sx={{
                         color: appConfig.theme["Tertiary"]
                     }}
@@ -121,7 +121,7 @@ export default function Sidebar() {
                             }} />
                         </ListItemIcon>
                     </ListItemButton>
-                </ListItem>
+                </ListItem> */}
             </List>
         </Box>
     );

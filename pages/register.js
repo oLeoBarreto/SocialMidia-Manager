@@ -3,19 +3,22 @@ import DefaultLayout from '../src/components/layouts/DefautLayout';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Grid, Box, Typography, Container, Checkbox } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { ThemeProvider } from '@mui/material/styles';
+import { useRouter } from 'next/router';
 import Theme from '../src/components/Theme';
 import Api from '../src/api';
 
 export default function SignUp() {
+    const route = useRouter();
 
     const register = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         const data = new FormData(event.currentTarget);
         Api.post("auth/register", {
             name: data.get('username'),
             email: data.get('email'),
             password: data.get('password'),
         }).then((response) => {
+            route.push('/');
             console.log(response);
         });
     };

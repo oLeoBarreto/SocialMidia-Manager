@@ -15,14 +15,17 @@ export default function Dashboard() {
     React.useEffect(() => {
         Api
             .get("api/twitter/Followers")
-            .then(response => setFollowers(response.data.followersNumber))
+            .then(response => {
+                setFollowers(response.data);
+                console.log('Followers: ',followers);
+            })
             .catch((err) => {
                 console.error("Ops! erro: " + err);
             });
 
         Api
             .get("api/twitter/Friends")
-            .then(response => setFriends(response.data.friendsNumber))
+            .then(response => setFriends(response.data))
             .catch((err) => {
                 console.error("Ops! erro: " + err);
             });

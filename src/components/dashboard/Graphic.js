@@ -8,27 +8,27 @@ export default function Graphic(props) {
   const data = {
     datasets: [
       {
-        backgroundColor: "#3F51B5",
+        backgroundColor: "#EE1D52",
         barPercentage: 0.5,
         barThickness: 12,
         borderRadius: 4,
         categoryPercentage: 0.5,
-        data: [props.followers],
+        data: [5, 8, props.followers],
         label: "Followers",
         maxBarThickness: 10,
       },
       {
-        backgroundColor: "#EEEEEE",
+        backgroundColor: "#6058D9",
         barPercentage: 0.5,
         barThickness: 12,
         borderRadius: 4,
         categoryPercentage: 0.5,
-        data: [props.friends],
+        data: [12, 16, props.friends],
         label: "Friends",
         maxBarThickness: 10,
       },
     ],
-    labels: ["1 Maio"],
+    labels: ["Abril", "Maio", "Junho"],
   };
 
   const options = {

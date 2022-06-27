@@ -1,25 +1,22 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import { TimePicker } from '@mui/lab';
-import { ThemeProvider, } from '@mui/material/styles';
-import Theme from '../Theme';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-export default function BasicTimePicker() {
-    const [hour, setHour] = React.useState(null);
+export default function DatePicker() {
+  const [value, setValue] = React.useState(null);
 
-    return (
-        <ThemeProvider theme={Theme()}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <TimePicker
-                    value={hour}
-                    onChange={(newValue) => {
-                        setHour(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-            </LocalizationProvider>
-        </ThemeProvider>
-    );
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DatePicker
+        label="Basic example"
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />
+    </LocalizationProvider>
+  );
 }
